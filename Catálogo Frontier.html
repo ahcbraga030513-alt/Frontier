@@ -1,0 +1,351 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Catálogo Frontier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: cabeçalho com totais, abas por sistema, tabelas e cartões com filtros. */
+:root{
+  --bg:#f3efe6; --surface:#fbf9f3; --ink:#1d1a15; --dim:#6d6657; --line:#d9d1bf;
+  --ember:#b8561a; --moss:#4c6d22; --water:#1f6b88; --blood:#a63a28;
+  --display:'Barlow Condensed','Arial Narrow',system-ui,sans-serif;
+  --body:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12100d;--surface:#1b1814;--ink:#ece3cf;--dim:#a39b87;--line:#35302a;--ember:#ee8a3c;--moss:#9cc15f;--water:#6fb4cf;--blood:#d2573f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12100d;--surface:#1b1814;--ink:#ece3cf;--dim:#a39b87;--line:#35302a;--ember:#ee8a3c;--moss:#9cc15f;--water:#6fb4cf;--blood:#d2573f;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1100px;margin:0 auto;display:grid;gap:22px}
+.wrap>*{min-width:0}
+h1{margin:0;font:700 clamp(36px,7vw,60px)/.95 var(--display);text-transform:uppercase;letter-spacing:.02em;text-wrap:balance}
+h1 small{display:block;font-size:.34em;letter-spacing:.34em;color:var(--ember);margin-bottom:8px}
+.lead{margin:0;max-width:64ch;color:var(--dim)}
+.totals{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+.totals div{padding:12px 16px;border-right:1px solid var(--line);display:grid;gap:0}
+.totals div:last-child{border-right:0}
+.totals b{font:700 34px/1 var(--display);font-variant-numeric:tabular-nums}
+.totals span{font:600 12px var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.totals em{font:normal 12px var(--body);color:var(--moss)}
+nav{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);padding-bottom:10px}
+nav a{font:600 15px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);text-decoration:none;padding:7px 14px;border-radius:5px;border:1px solid transparent}
+nav a[aria-current="page"]{color:var(--ink);border-color:var(--ember);background:var(--surface)}
+nav a:focus-visible,.chip:focus-visible,input:focus-visible{outline:2px solid var(--ember);outline-offset:2px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font:600 13px var(--display);letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--dim);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+input[type=search]{font:inherit;padding:7px 12px;border-radius:5px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:0;flex:1 1 200px;max-width:320px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+th{font:600 12px var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;color:var(--dim);width:42px}
+td b{font:700 17px var(--display);letter-spacing:.03em}
+td small{display:block;color:var(--dim);font-size:13px}
+tr.grp td{background:var(--bg);font:700 15px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--ember);padding:8px 12px}
+.st{font:600 11px var(--display);letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;border:1px solid var(--line);color:var(--dim);white-space:nowrap}
+.st.jogavel{color:var(--moss);border-color:var(--moss)} .st.parcial{color:var(--ember);border-color:var(--ember)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.card h3{margin:0;font:700 22px/1.1 var(--display);letter-spacing:.03em}
+.card h3 small{display:block;font:600 12px var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--ember);margin-bottom:3px}
+.card p{margin:0;color:var(--dim);font-size:14px}
+.card dl{margin:4px 0 0;display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:13px}
+.card dt{font:600 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding-top:1px}
+.card dd{margin:0}
+.card .head{display:flex;justify-content:space-between;gap:8px;align-items:start}
+.lv{font:700 12px var(--display);letter-spacing:.08em;text-transform:uppercase}
+.lv.I{color:var(--moss)} .lv.M{color:var(--water)} .lv.A{color:var(--ember)} .lv.L{color:var(--blood)} .lv.X{color:var(--ink);text-decoration:underline}
+.legend{color:var(--dim);font-size:13px;margin:0}
+@media (max-width:640px){.totals{grid-template-columns:repeat(2,1fr)}.totals div:nth-child(2){border-right:0}.totals div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1><small>Reinos da Sobrevivência</small>Catálogo oficial</h1>
+    <p class="lead">Todo o conteúdo planejado do jogo, com os totais exatos. A etiqueta de cada item diz se ele já existe no protótipo jogável ou se ainda está só neste catálogo.</p>
+  </header>
+  <div class="totals" id="totals"></div>
+  <nav id="nav" aria-label="Seções"></nav>
+  <div class="tools" id="tools"></div>
+  <main id="out"></main>
+</div>
+
+<script>
+/* Catálogo oficial do FRONTIER: totais exatos 40 mobs, 10 chefões, 20 dimensões, 90 masmorras.
+   status: 'jogavel' = existe no protótipo; 'planejado' = só no catálogo. */
+const CATALOG = (() => {
+
+/* ---------- DIMENSÕES (20) ---------- */
+// [id, nome, acesso, recurso exclusivo, perigo, clima/física, base?]
+const dimRaw = [
+ [1,'Reino Primordial','Ponto de partida','Madeira de carvalho-antigo','Predadores noturnos','Ciclo normal; chuva leve','Livre'],
+ [2,'Domínio Vulcânico','Portal da Chave Vulcânica (Cripta do Musgo)','Núcleo de magma','Calor e rios de lava','Cinzas no ar; calor drena fôlego','Só plataformas de basalto'],
+ [3,'Abismo Oceânico','Submarino de engenheiro ou Coração das Marés','Pérola abissal','Pressão e predadores','Água; fôlego limitado; correntes','Só cúpulas'],
+ [4,'Reino Glacial','Portal de gelo após Ignar','Cristal glacial','Frio extremo e nevascas','Frio drena vida sem fogueira','Livre com aquecedores'],
+ [5,'Floresta Ancestral','Árvore-portal com Semente de carvalho','Seiva viva','Vegetação que ataca','Neblina densa; luz filtrada','Livre'],
+ [6,'Deserto das Tempestades','Bússola do Explorador','Vidro de raio','Tempestades de areia','Raios e visibilidade baixa','Só oásis'],
+ [7,'Ilhas Celestes','Dirigível ou Penas de Zephyron','Metal-nuvem','Quedas e rajadas','Gravidade leve; correntes de ar','Só ilhas maiores'],
+ [8,'Submundo Cristalino','Elevador de mina profunda','Cristal de ressonância','Desabamentos','Escuro; cristais iluminam','Livre'],
+ [9,'Dimensão das Sombras','Espelho negro do Bibliotecário','Essência de sombra','Criaturas que odeiam luz','Escuridão que consome fôlego sem tocha','Proibida'],
+ [10,'Reino Celestial','Escada solar após Solmara','Fragmento estelar','Luz cegante','Sem noite; luz queima sombras','Só templos'],
+ [11,'Pântano Corrompido','Trilha de lodo perto do Primordial','Resina corrompida','Água tóxica fictícia','Neblina verde; lentidão na lama','Palafitas'],
+ [12,'Deserto de Vidro','Portal de areia fundida','Areia vitrificada','Dunas cortantes','Calor e reflexos','Só abrigos de vidro'],
+ [13,'Reino dos Cogumelos Gigantes','Fenda de esporos','Esporo luminoso','Esporos que confundem','Subterrâneo úmido; luz bioluminescente','Livre'],
+ [14,'Dimensão Mecânica','Engrenagem-chave do Engenheiro','Aço-relógio','Fábricas ativas','Pistões e esteiras movem o chão','Só estações'],
+ [15,'Reino dos Espíritos','Cerimônia no santuário','Ectoplasma','Criaturas etéreas','Física flutuante; objetos atravessáveis','Proibida'],
+ [16,'Dimensão do Caos','Portal instável aleatório','Matéria caótica','Terreno instável','Gravidade e clima mudam sozinhos','Proibida'],
+ [17,'Reino das Cinzas','Cidade em ruínas do Vulcânico','Carvão eterno','Tempestades de cinzas','Visibilidade baixa; cinza abafa som','Só abrigos reforçados'],
+ [18,'Labirinto Infinito','Chave do Bibliotecário','Mapa vivo','Corredores mutáveis','Paredes se movem a cada ciclo','Proibida'],
+ [19,'Reino dos Gigantes','Ponte colossal após Morgrath','Osso de titã','Criaturas enormes','Escala maior; passos causam tremores','Só fortalezas menores'],
+ [20,'Dimensão do Tempo','Núcleo do Tempo (Chronovar)','Areia temporal','Anomalias temporais','Tempo desacelera e retrocede em zonas','Proibida']
+];
+const dims = dimRaw.map(d=>({id:d[0],nome:d[1],acesso:d[2],exclusivo:d[3],perigo:d[4],fisica:d[5],base:d[6],
+  status:d[0]===1?'jogavel':(d[0]===2?'parcial':'planejado')}));
+
+/* ---------- MOBS (40) ---------- */
+// [nome, categoria, dimensão, comportamento, vida, dano, vel, fraqueza, drops, utilidade, ia]
+const mobRaw = [
+ // 8 pacíficas ou domesticáveis
+ ['Cervo-musgoso','pacifica',1,'Pasta em bando e foge ao ver o jogador.',20,0,6.2,'Qualquer ataque','Carne, couro','Comida e couro para armadura leve','fuga'],
+ ['Velonho','pacifica',1,'Ovelha de lã densa; segue quem carrega bagas.',24,0,4,'Qualquer ataque','Lã, carne','Lã para roupas de frio; domesticável','dom'],
+ ['Galacho','pacifica',1,'Ave grande que bota ovos dourados e cacareja ao perceber perigo.',10,0,5,'Qualquer ataque','Ovo, pena','Ovos para o Cozinheiro; domesticável','dom'],
+ ['Tatupedra','pacifica',8,'Enrola-se em casco mineral e rola para escapar.',40,0,3.5,'Martelo','Fragmento de pedra','Mascote de carga: +8 espaços de inventário','dom'],
+ ['Bisão-aurora','pacifica',1,'Manada grande; ataca só se um filhote for ferido.',90,12,4.5,'Gelo','Couro grosso, carne','Montaria após domesticar com bagas raras','territorial'],
+ ['Lontrim-cristalino','pacifica',3,'Brinca na água e leva itens brilhantes até a margem.',16,0,5,'Raio','Escama de cristal','Encontra tesouros submersos para o Explorador','dom'],
+ ['Porcogumelo','pacifica',13,'Fuça o chão atrás de esporos e brilha à noite.',28,0,3.8,'Fogo','Esporo luminoso, carne','Fareja ingredientes raros','dom'],
+ ['Cágado-nuvem','pacifica',7,'Tartaruga que flutua em correntes de ar.',60,0,2.5,'Raio','Casco leve','Montaria lenta que cruza abismos entre ilhas','dom'],
+ // 8 selvagens e predadores
+ ['Urso-cavernoso','predador',1,'Defende o território ao redor da toca e persegue por longas distâncias.',140,16,5.2,'Fogo','Couro, garra','Garras para armas; matilha de filhotes pode ser domada','territorial'],
+ ['Lobo-de-geada','predador',4,'Caça em matilha e cerca o alvo antes de atacar.',55,9,7.4,'Fogo','Pele de geada','Pele para armadura de frio','matilha'],
+ ['Onça-folhagem','predador',5,'Embosca de cima das árvores e some na vegetação.',70,14,7.8,'Luz','Presa, pele camuflada','Armadura de furtividade','emboscada'],
+ ['Hiena-areia','predador',6,'Persegue feridos e foge de fogo.',48,8,7,'Fogo','Dente, couro seco','Isca para atrair matilhas','matilha'],
+ ['Cobra-sino','predador',11,'Avisa com chocalho e ataca com veneno fictício.',30,7,5,'Gelo','Presa, veneno fraco','Antídoto e flechas envenenadas','emboscada'],
+ ['Tubarão-lâmina','predador',3,'Circula a presa e ataca na pausa.',120,20,9,'Raio','Dente-lâmina','Material de arma aquática','caca'],
+ ['Escorpião-vítreo','predador',12,'Cava na areia e surge sob os pés.',65,12,5.5,'Água','Ferrão de vidro','Pontas de flecha cortantes','emboscada'],
+ ['Javali-brasa','predador',2,'Investe em linha reta deixando rastro de fogo.',100,15,7,'Água','Presa quente, carne','Combustível para fornalhas','investida'],
+ // 8 monstros terrestres hostis
+ ['Musgoso','hostil',1,'Surge à noite, lento, em grupos pequenos.',45,6,3.4,'Fogo','Musgo morto, osso','Fibra para cordas','noite'],
+ ['Aranha-tecelã','hostil',1,'Prende o jogador com teia e ataca de longe.',35,7,6.2,'Fogo','Seda, olho de aranha','Seda para arcos e armadilhas','teia'],
+ ['Golem-lasca','hostil',8,'Quebra em fragmentos que atacam sozinhos.',160,18,2.8,'Martelo/explosivo','Lasca mineral','Pedra reforçada','tank'],
+ ['Autômato-ferrugem','hostil',14,'Patrulha rotas fixas e sinaliza outros autômatos.',90,11,4,'Água/raio','Engrenagem','Peças para o Engenheiro','patrulha'],
+ ['Peregrino-cinza','hostil',17,'Caminha em direção à luz mais forte e se desfaz em cinzas.',60,10,3.6,'Água','Cinza pesada','Tinta e pólvora fraca','atrai-luz'],
+ ['Espinheiro-vivo','hostil',11,'Planta móvel que lança espinhos em arco.',80,9,2.5,'Fogo','Espinho, seiva','Armadilhas de espinhos','torre'],
+ ['Brutamonte','hostil',19,'Gigante menor que arremessa pedras e pisoteia.',260,28,3.2,'Articulações','Osso grande','Material de fortaleza','tank'],
+ ['Ossário','hostil',1,'Esqueleto que reage ao som e foge da luz do dia.',50,8,4.6,'Martelo','Osso, fragmento antigo','Pó de osso para fertilizante','noite'],
+ // 6 voadoras
+ ['Corvo-tempestade','voadora',6,'Mergulha em formação durante tempestades.',22,6,9,'Vento','Pena condutora','Penas para flechas elétricas','bando'],
+ ['Morcego-cristal','voadora',8,'Guia-se pelo eco e reage ao som de passos.',18,5,8.5,'Luz forte','Asa cristalina','Cristais de eco para mapas','eco'],
+ ['Harpia-brasa','voadora',2,'Lança brasas de cima e recua para recarregar.',70,13,8,'Água','Pena de brasa','Combustível de canhão','arremesso'],
+ ['Raia-celeste','voadora',7,'Plana em círculos e mergulha sobre quem está só.',85,15,7,'Raio','Barbatana de ar','Velas e planadores','mergulho'],
+ ['Mariposa-lunar','voadora',5,'Aparece só na lua cheia e espalha pó que revela itens.',14,0,5.5,'Fogo','Pó lunar','Poção de visão noturna','noite'],
+ ['Gavião-dourado','voadora',10,'Sentinela que alerta e ataca intrusos.',75,14,10,'Sombra','Pena dourada','Penas para armadura leve','sentinela'],
+ // 6 mágicas/elementais
+ ['Fagulha','magica',2,'Orbe de fogo que explode ao tocar.',20,16,6,'Água','Brasa viva','Faíscas para fornalhas','explode'],
+ ['Maré-viva','magica',3,'Poça animada que se espalha pelo chão.',55,8,4.2,'Gelo','Gota maré','Água pura','espalha'],
+ ['Faísca-errante','magica',6,'Pula entre metais condutores.',30,11,10,'Terra','Centelha','Baterias dos engenheiros','condutor'],
+ ['Espírito-silvestre','magica',5,'Protege plantas e some se tratadas com cuidado.',40,6,4,'Fogo','Folha etérea','Crescimento acelerado de plantações','guardiao'],
+ ['Névoa-de-gelo','magica',4,'Nuvem que congela quem fica dentro.',45,10,3,'Fogo','Cristal fino','Resfriador de alimentos','area'],
+ ['Eco-do-tempo','magica',20,'Repete os últimos movimentos do jogador com atraso.',70,12,5,'Sequências novas','Fragmento temporal','Pesquisa do Bibliotecário','espelho'],
+ // 4 elites raras
+ ['Ancião-Casco','elite',1,'Rei dos cervos: invoca o bando para cercar o jogador. Aparece em floresta madura de dia.',320,22,6,'Ataques pelas costas','Galhada antiga, coroa de musgo','Galhada para a primeira arma lendária','elite'],
+ ['Basilisco-vítreo','elite',12,'Olhar de reflexo que atordoa. Fica visível só de espelho.',420,30,4.5,'Espelhos','Olho de vidro','Núcleo do Forjador','elite'],
+ ['Guardião-engrenagem','elite',14,'Constrói barreiras e reduz o tempo de recarga dos autômatos.',500,26,3.8,'Mecanismo exposto','Coração mecânico','Peça mestra de máquinas','elite'],
+ ['Quimera-do-caos','elite',16,'Muda de elemento a cada ataque.',560,34,6.5,'Elemento oposto ao atual','Escama caótica','Imbuição elemental','elite']
+];
+const mobs = mobRaw.map((m,i)=>({n:i+1,nome:m[0],cat:m[1],dim:m[2],comportamento:m[3],vida:m[4],dano:m[5],vel:m[6],fraqueza:m[7],drops:m[8],uso:m[9],ia:m[10],
+  status:['Cervo-musgoso','Musgoso','Aranha-tecelã','Urso-cavernoso','Ossário'].includes(m[0])?'jogavel':'planejado'}));
+
+/* ---------- CHEFÕES (10) ---------- */
+const bossRaw = [
+ [1,'Ignar, o Titã das Chamas','fogo/magma',2,'Cratera do vulcão','Gigante de pedra vulcânica com rachaduras de lava.','Ondas de lava, pilares de fogo, chuva de rochas.','Ativar mecanismos de resfriamento para abrir brechas na armadura.','Núcleo Primordial do Fogo',2400,'jogavel'],
+ [2,'Neryss, a Imperatriz Abissal','água',3,'Templo submerso','Colosso de placas de cristal e coroa de coral.','Ondas gigantes, redemoinhos, jatos de pressão.','Alternar entre plataformas submersas e elevadas.','Coração das Marés',3200,'planejado'],
+ [3,'Vaelthar, o Dragão da Tempestade','raio',6,'Montanha cercada por tempestades','Dragão de escamas metálicas e asas elétricas.','Descargas, investidas aéreas, relâmpagos direcionados.','Redirecionar energia por estruturas condutoras para desativar suas defesas.','Núcleo do Trovão',4200,'planejado'],
+ [4,'Sylvara, a Devoradora de Raízes','natureza',5,'Floresta ancestral','Entidade de madeira antiga, raízes e flores luminosas.','Vinhas que prendem, espinhos, invocação de criaturas vegetais.','Destruir focos de corrupção antes de atacar o núcleo.','Semente da Eternidade',5200,'planejado'],
+ [5,'Glacius, o Rei do Inverno','gelo',4,'Fortaleza congelada','Gigante de armadura cristalina com machado monumental.','Nevascas, paredes de gelo, plataformas congeladas.','Controlar fontes de calor e quebrar a armadura com o cenário.','Coração Glacial',6400,'planejado'],
+ [6,'Zephyron, o Soberano dos Céus','vento',7,'Ilhas flutuantes','Criatura alada de penas metálicas e correntes de ar visíveis.','Tornados, rajadas, ataques aéreos.','Usar plataformas móveis e correntes para alcançar pontos fracos.','Essência dos Céus',7600,'planejado'],
+ [7,'Morgrath, o Colosso de Pedra','terra',8,'Pedreira ancestral subterrânea','Gigante rochoso com cristais incrustados.','Terremotos, punhos sísmicos, muralhas de pedra.','Atingir articulações e desestabilizar a armadura com explosivos.','Coração da Montanha',9000,'planejado'],
+ [8,'Umbrael, o Guardião das Sombras','sombra',9,'Catedral sem luz natural','Figura encapuzada cujo corpo some na escuridão.','Clones sombrios, teletransporte, zonas de escuridão.','Acender fontes de luz e achar o verdadeiro entre as ilusões.','Fragmento do Eclipse',10500,'planejado'],
+ [9,'Solmara, a Serafina Solar','luz',10,'Observatório celestial','Criatura de asas luminosas e armadura dourada antiga.','Feixes de energia, explosões, escudos de luz.','Alinhar espelhos e atacar quando os escudos caem.','Essência Solar',12500,'planejado'],
+ [10,'Chronovar, o Devorador do Tempo','tempo',20,'Ruínas suspensas fora do tempo','Colosso de armadura antiga com relógios orbitando.','Lentidão, ecos temporais, restaurar a arena.','Decorar sequências, usar mecanismos temporais e bater nas janelas de vulnerabilidade.','Núcleo do Tempo',16000,'planejado']
+];
+const bosses = bossRaw.map(b=>({n:b[0],nome:b[1],elemento:b[2],dim:b[3],arena:b[4],aparencia:b[5],poderes:b[6],mecanica:b[7],recompensa:b[8],vida:b[9],status:b[10],fases:3}));
+
+/* ---------- MASMORRAS (90) ---------- */
+// formatos: cat Catacumbas · tem Templo elemental · min Mina abandonada · cas Castelo tomado · lab Laboratório perdido
+//           cid Cidade subterrânea · lbm Labirinto mágico · tor Torre de combate · for Fortaleza inimiga · sub Ruína submersa
+//           san Santuário secreto · mut Salas que mudam de posição
+// nível: I Iniciante · M Intermediário · A Avançado · L Lendário · X Mítico
+// [nome, formato, nível, desafio final, caminho por classe (opcional)]
+const FORM={cat:'Catacumbas antigas',tem:'Templo elemental',min:'Mina abandonada',cas:'Castelo tomado por monstros',lab:'Laboratório perdido',cid:'Cidade subterrânea',lbm:'Labirinto mágico',tor:'Torre de combate',for:'Fortaleza inimiga',sub:'Ruína submersa',san:'Santuário secreto',mut:'Salas que mudam de posição'};
+const LV={I:'Iniciante',M:'Intermediário',A:'Avançado',L:'Lendário',X:'Mítico'};
+const dRaw = {
+ 1:[['Cripta do Musgo','cat','I','Horda de Musgosos na sala do sarcófago','Explorador acha passagem lateral'],
+    ['Mina do Corvo Mudo','min','I','Mini-chefe Golem de carvão','Defensor rompe a pilha de rochas'],
+    ['Torre do Vigia Caído','tor','M','Duelo com o Capitão Ossário','Mago abre o selo do topo'],
+    ['Santuário da Raiz Branca','san','M','Enigma das três raízes luminosas','Fazendeiro revive a raiz seca'],
+    ['Fortaleza dos Bandidos do Rio','for','A','Cerco: três ondas e líder bandido','Artilheiro derruba o portão']],
+ 2:[['Forja Abandonada de Basalto','lab','M','Mini-chefe Fagulha-mãe','Forjador reacende a forja central'],
+    ['Templo da Brasa Pálida','tem','M','Enigma dos braseiros espelhados','Mago apaga os selos de fogo'],
+    ['Túnel de Obsidiana','min','A','Corrida contra a lava ascendente','Explorador acha atalho seco'],
+    ['Castelo de Cinza Viva','cas','L','Horda de Javalis-brasa e o Senhor de Brasa','Defensor segura a ponte em chamas'],
+    ['Coração do Vulcão (anexo de Ignar)','mut','X','Salas de basalto que giram até a câmara do chefe','Engenheiro trava as engrenagens']],
+ 3:[['Casco do Navio Naufragado','sub','I','Mini-chefe Polvo-cofre','Explorador abre a escotilha lateral'],
+    ['Cidade de Sal e Coral','cid','M','Enigma das marés (3 comportas)','Engenheiro opera as comportas'],
+    ['Catacumba das Medusas Vazias','cat','A','Sala de correntes com Maré-viva','Mago congela as correntes'],
+    ['Farol Submerso','tor','L','Chefe-guardião Tubarão-lâmina','Atacante vence em duelo sem armadura'],
+    ['Templo do Pulso Azul','tem','X','Quebra-cabeça das cinco válvulas e horda','Bibliotecário decifra as inscrições']],
+ 4:[['Caverna do Hálito Branco','cat','I','Mini-chefe Lobo-alfa de geada','Cozinheiro prepara ração anticongelamento'],
+    ['Mina de Gelo Azul','min','M','Cadeia de pontes de gelo frágeis','Forjador derrete as pontes certas'],
+    ['Torre dos Sinos Gelados','tor','A','Horda de Névoas-de-gelo','Mago evapora a névoa'],
+    ['Castelo do Último Inverno','cas','L','Cavaleiro Congelado e quatro ecos','Defensor mantém as tochas acesas'],
+    ['Santuário do Coração Parado','san','X','Enigma de espelhos de neve','Explorador vê as pegadas ocultas']],
+ 5:[['Clareira do Carvalho Oco','san','I','Enigma das runas de folhas','Fazendeiro replanta as runas'],
+    ['Ruínas Entre as Raízes','cat','M','Horda de Espíritos-silvestres','Mago acalma os espíritos'],
+    ['Cidade dos Cogumelos Mortos','cid','A','Mini-chefe Onça-folhagem alfa','Explorador rastreia a toca'],
+    ['Labirinto da Hera Viva','lbm','L','Labirinto que muda a cada pisada','Engenheiro marca com sinalizadores'],
+    ['Templo do Primeiro Broto','tem','X','Quebra-cabeça de estações do ano e mini-chefe','Bibliotecário lê o calendário antigo']],
+ 6:[['Oásis do Eco Seco','san','I','Enigma dos sinos de areia','Explorador acha o sino oculto'],
+    ['Tumbas dos Faraós de Vento','cat','M','Mini-chefe Hiena-matriarca','Atacante enfrenta sem armadura'],
+    ['Torre da Antena Quebrada','tor','A','Chefe elétrico Faísca-errante','Engenheiro aterra a antena'],
+    ['Fortaleza dos Mercadores de Tempestade','for','L','Cerco com Corvos-tempestade','Artilheiro destrói a torre de vigia'],
+    ['Cidade Soterrada de Khemar','cid','X','Corrida contra a tempestade e enigma final','Bibliotecário decifra o mapa estelar']],
+ 7:[['Ilha do Sino Perdido','san','I','Enigma de contrapesos','Engenheiro equilibra os contrapesos'],
+    ['Templo dos Ventos Quietos','tem','M','Mini-chefe Raia-celeste','Mago controla a corrente'],
+    ['Castelo Voador Quebrado','cas','A','Cerco aéreo com Raias','Artilheiro derruba os canhões inimigos'],
+    ['Biblioteca nas Nuvens','lbm','L','Estantes que trocam de lugar','Bibliotecário reorganiza pela ordem certa'],
+    ['Observatório dos Pilotos','tor','X','Duelo contra o Piloto-Fantasma','Atacante vence a investida aérea']],
+ 8:[['Mina do Eco Azul','min','I','Mini-chefe Morcego-cristal rei','Explorador evita os ecos'],
+    ['Cidade dos Mineradores Sem Rosto','cid','M','Enigma do elevador de carga','Engenheiro conserta o elevador'],
+    ['Câmara das Ressonâncias','lbm','A','Quebra-cabeça de cristais cantores','Mago acorda os cristais certos'],
+    ['Fortaleza do Golem-Rei','for','L','Cerco ao Golem-lasca gigante','Defensor protege o artilheiro'],
+    ['Coração da Pedreira (anexo de Morgrath)','mut','X','Salas que desabam e se reconstroem','Explorador acha as salas ocultas']],
+ 9:[['Corredor das Velas Pretas','cat','M','Horda de Sombrios com luz fraca','Cozinheiro cria lanternas'],
+    ['Cidade de Espelhos Negros','lbm','A','Mini-chefe Reflexo','Mago quebra o espelho verdadeiro'],
+    ['Torre do Último Farol','tor','L','Duelo contra o Vigia Cego','Defensor protege a chama'],
+    ['Castelo Sem Reflexo','cas','X','Horda e chefe disfarçado','Bibliotecário revela o impostor'],
+    ['Santuário da Noite Parada','san','X','Enigma das três luas','Explorador vê as luas ocultas']],
+ 10:[['Pátio dos Anjos Quebrados','cat','A','Mini-chefe Gavião-dourado alfa','Atacante rebate os feixes'],
+     ['Templo do Primeiro Dia','tem','A','Enigma dos espelhos solares','Engenheiro alinha os espelhos'],
+     ['Biblioteca da Aurora','lbm','L','Labirinto de luz e sombra','Bibliotecário lê as sombras'],
+     ['Torre Dourada','tor','L','Cerco ao serafim menor','Mago absorve os raios'],
+     ['Câmara da Luz Final (anexo de Solmara)','mut','X','Salas de luz que mudam de ordem','Forjador forja a lente certa']],
+ 11:[['Palafitas Podres','cas','I','Mini-chefe Espinheiro-vivo','Fazendeiro poda o espinheiro'],
+     ['Poço das Cobras-sino','cat','M','Horda de Cobras e o Rei-Serpente','Cozinheiro prepara antídoto'],
+     ['Laboratório da Lama','lab','A','Quebra-cabeça de frascos coloridos','Bibliotecário mistura a ordem correta'],
+     ['Ruínas Afogadas da Torre Branca','sub','L','Corrida de nível da água','Engenheiro drena os salões']],
+ 12:[['Salão de Vidro Fundido','san','M','Enigma de reflexos','Explorador vê o caminho oculto'],
+     ['Mina de Areia Cantante','min','A','Mini-chefe Escorpião-vítreo','Mago desacelera a areia'],
+     ['Fortaleza dos Reflexos','for','L','Cerco ao Basilisco','Artilheiro quebra o espelho central'],
+     ['Cidade de Lâminas de Sol','cid','X','Enigma final de espelhos giratórios','Engenheiro conserta a engrenagem solar']],
+ 13:[['Caverna dos Esporos Dançantes','cat','M','Horda de esporos','Cozinheiro cria máscara de filtro'],
+     ['Laboratório do Mestre Fungo','lab','A','Mini-chefe Cogumelo-rainha','Fazendeiro corta a raiz mestra'],
+     ['Cidade-Colônia Subterrânea','cid','L','Enigma de ressonância de esporos','Bibliotecário lê o hino'],
+     ['Salão do Grande Micélio','mut','X','Salas que brotam e murcham','Explorador segue o fio de luz']],
+ 14:[['Fábrica Zero','lab','M','Linha de montagem com autômatos','Engenheiro desliga as esteiras'],
+     ['Torre da Engrenagem Alta','tor','A','Mini-chefe Guardião-engrenagem','Atacante quebra os rolamentos'],
+     ['Cidade dos Relógios Parados','cid','L','Enigma de horários e pistões','Bibliotecário sincroniza os relógios'],
+     ['Câmara das Prensas','mut','X','Salas que esmagam e se movem','Defensor segura as prensas']],
+ 15:[['Cemitério Sem Nomes','cat','A','Mini-chefe Eco ancestral','Bibliotecário lê os nomes apagados'],
+     ['Santuário da Prece Perdida','san','L','Enigma de velas e nomes','Mago acende as velas certas'],
+     ['Casa dos Mil Espelhos','lbm','L','Labirinto que reflete o jogador','Explorador acha o ponto cego'],
+     ['Templo do Último Sussurro','tem','X','Horda etérea e mini-chefe','Cozinheiro oferece o banquete'] ],
+ 16:[['Ponte de Fragmentos','mut','A','Corrida entre plataformas','Engenheiro cria pontes'],
+     ['Castelo Desmontado','cas','L','Mini-chefe Quimera menor','Defensor mantém o centro'],
+     ['Laboratório do Acidente','lab','L','Enigma de portais que trocam','Bibliotecário prevê o padrão'],
+     ['Coração do Caos','lbm','X','Labirinto dinâmico até a Quimera','Atacante vence a Quimera em duelo']],
+ 17:[['Praça das Estátuas de Cinza','cid','M','Horda de Peregrinos','Cozinheiro cria lanternas coloridas'],
+     ['Catedral Queimada','cat','A','Mini-chefe Capitão Cinzento','Defensor protege o altar'],
+     ['Fábrica de Carvão Eterno','min','L','Corrida contra a nuvem de cinza','Engenheiro liga os exaustores'],
+     ['Palácio do Último Imperador','cas','X','Cerco ao imperador e aos guardas','Artilheiro derruba o portão dourado']],
+ 18:[['Corredor 1-A','lbm','A','Labirinto de paredes móveis','Explorador marca o caminho'],
+     ['Câmara das Escolhas','mut','L','Enigma de salas trocadas','Bibliotecário prevê a ordem'],
+     ['Biblioteca Dobrada','lbm','L','Enigma de livros que mudam','Mago reorganiza os volumes'],
+     ['Centro do Labirinto','mut','X','Chefe-labirinto: o mapa é o inimigo','Todas as classes cooperam']],
+ 19:[['Pé da Montanha de Osso','cat','A','Mini-chefe Brutamonte','Atacante vence sem esquiva'],
+     ['Salão do Trono de Pedra','cas','L','Cerco aos gigantes menores','Artilheiro derruba as muralhas'],
+     ['Forja dos Titãs','lab','L','Quebra-cabeça de martelos gigantes','Forjador aprende o golpe titânico'],
+     ['Cume do Colosso','for','X','Cerco final aos gigantes','Defensor protege as máquinas de cerco']],
+ 20:[['Corredor dos Segundos','mut','A','Corrida contra o relógio','Explorador acha o atalho do tempo'],
+     ['Biblioteca dos Dias Perdidos','lbm','L','Labirinto que desfaz progresso','Bibliotecário desvia a anomalia'],
+     ['Torre do Primeiro Instante','tor','L','Duelo contra o Eco-do-tempo maior','Atacante decora a sequência'],
+     ['Sala do Relógio Final (anexo de Chronovar)','mut','X','Salas que repetem até o chefe','Engenheiro para o relógio']]
+};
+const dungeons=[];let k=1;
+for(const d of dims){for(const x of dRaw[d.id]){dungeons.push({n:k++,dim:d.id,nome:x[0],formato:FORM[x[1]],fmt:x[1],nivel:LV[x[2]],lv:x[2],desafio:x[3],classe:x[4],
+  status:x[0]==='Cripta do Musgo'?'jogavel':'planejado'})}}
+
+/* ---------- PROGRESSÃO ---------- */
+const progressao = [
+ ['1-5','Madeira e pedra','Reino Primordial','Cripta do Musgo; Ancião-Casco','Chave Vulcânica, machado de pedra'],
+ ['6-10','Ferro e couro','Domínio Vulcânico','Ignar; Forja Abandonada','Núcleo Primordial do Fogo, armadura de brasa'],
+ ['11-15','Aço e cristal','Abismo Oceânico, Reino Glacial','Neryss; Glacius','Coração das Marés, Coração Glacial'],
+ ['16-22','Liga rara','Floresta Ancestral, Deserto das Tempestades','Sylvara; Vaelthar','Semente da Eternidade, Núcleo do Trovão'],
+ ['23-30','Metal-nuvem','Ilhas Celestes, Submundo Cristalino','Zephyron; Morgrath','Essência dos Céus, Coração da Montanha'],
+ ['31-40','Essência de sombra','Dimensão das Sombras, Reino Celestial','Umbrael; Solmara','Fragmento do Eclipse, Essência Solar'],
+ ['41-55','Matéria de caos','Dimensões 11 a 19','Elites e masmorras Míticas','Equipamentos lendários elementais'],
+ ['56-60','Areia temporal','Dimensão do Tempo','Chronovar','Núcleo do Tempo, equipamento final']
+];
+return {dims,mobs,bosses,dungeons,progressao,FORM,LV};
+})();
+if(typeof module!=='undefined')module.exports=CATALOG;
+
+</script>
+<script>
+(function(){
+const C=CATALOG,$=s=>document.querySelector(s);
+const catName={pacifica:'Pacíficas e domesticáveis',predador:'Predadores',hostil:'Monstros hostis',voadora:'Voadoras',magica:'Mágicas e elementais',elite:'Elites raras'};
+const dimName=id=>(C.dims.find(d=>d.id===id)||{}).nome||'';
+const stLabel={jogavel:'Jogável',parcial:'Parcial',planejado:'Planejado'};
+const st=s=>`<span class="st ${s}">${stLabel[s]}</span>`;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tabs=[['mobs','Mobs'],['chefoes','Chefões'],['dimensoes','Dimensões'],['masmorras','Masmorras'],['progressao','Progressão']];
+const state={tab:'mobs',cat:'todos',dim:0,lv:'todos',q:''};
+const cnt=(a,f)=>a.filter(f).length;
+$('#totals').innerHTML=[
+ [C.mobs.length,'Mobs',cnt(C.mobs,m=>m.status==='jogavel')+' jogáveis'],
+ [C.bosses.length,'Chefões',cnt(C.bosses,m=>m.status==='jogavel')+' jogável'],
+ [C.dims.length,'Dimensões',cnt(C.dims,m=>m.status!=='planejado')+' em andamento'],
+ [C.dungeons.length,'Masmorras',cnt(C.dungeons,m=>m.status==='jogavel')+' jogável']
+].map(t=>`<div><b>${t[0]}</b><span>${t[1]}</span><em>${t[2]}</em></div>`).join('');
+function nav(){$('#nav').innerHTML=tabs.map(t=>`<a href="#${t[0]}" ${state.tab===t[0]?'aria-current="page"':''}>${t[1]}</a>`).join('')}
+function chips(list,key,all){return list.map(c=>`<button class="chip" data-k="${key}" data-v="${c[0]}" aria-pressed="${String(state[key])===String(c[0])}">${c[1]}</button>`).join('')}
+function tools(){
+  const t=state.tab,box=$('#tools');let h='';
+  if(t==='mobs')h=chips([['todos','Todos'],...Object.entries(catName)],'cat')+'<input type="search" id="q" placeholder="Buscar mob" aria-label="Buscar mob" value="'+esc(state.q)+'">';
+  else if(t==='masmorras')h='<label class="legend" for="dimSel">Dimensão</label><select id="dimSel" class="chip" style="text-transform:none">'+[[0,'Todas'],...C.dims.map(d=>[d.id,d.id+'. '+d.nome])].map(d=>`<option value="${d[0]}" ${+state.dim===+d[0]?'selected':''}>${esc(d[1])}</option>`).join('')+'</select>'+chips([['todos','Todos os níveis'],...Object.entries(C.LV)],'lv')+'<input type="search" id="q" placeholder="Buscar masmorra" aria-label="Buscar masmorra" value="'+esc(state.q)+'">';
+  box.innerHTML=h;box.hidden=!h;
+  box.querySelectorAll('.chip[data-k]').forEach(b=>b.addEventListener('click',()=>{state[b.dataset.k]=b.dataset.k==='dim'?+b.dataset.v:b.dataset.v;render()}));
+  const q=$('#q');if(q)q.addEventListener('input',e=>{state.q=e.target.value;body()});
+  const ds=$('#dimSel');if(ds)ds.addEventListener('change',e=>{state.dim=+e.target.value;body()});
+}
+function mobsView(){
+  const q=state.q.toLowerCase();const rows=C.mobs.filter(m=>(state.cat==='todos'||m.cat===state.cat)&&(!q||(m.nome+m.drops+m.comportamento).toLowerCase().includes(q)));
+  return `<div class="scroll"><table><thead><tr><th>#</th><th>Mob</th><th>Dimensão</th><th>Vida · Dano · Vel.</th><th>Fraqueza</th><th>Drops e utilidade</th><th>Estado</th></tr></thead><tbody>`+
+  rows.map(m=>`<tr><td class="n">${m.n}</td><td><b>${esc(m.nome)}</b><small>${catName[m.cat]}</small><small>${esc(m.comportamento)}</small></td><td>${m.dim}. ${esc(dimName(m.dim))}</td><td style="white-space:nowrap">${m.vida} · ${m.dano} · ${m.vel}</td><td>${esc(m.fraqueza)}</td><td>${esc(m.drops)}<small>${esc(m.uso)}</small></td><td>${st(m.status)}</td></tr>`).join('')+`</tbody></table></div><p class="legend">${rows.length} de ${C.mobs.length} mobs. Vida e dano são valores base; vel. em metros por segundo.</p>`;
+}
+function bossView(){
+  return '<div class="cards">'+C.bosses.map(b=>`<article class="card"><div class="head"><h3><small>Chefão ${b.n} · ${esc(b.elemento)}</small>${esc(b.nome)}</h3>${st(b.status)}</div><p>${esc(b.aparencia)}</p><dl><dt>Dimensão</dt><dd>${b.dim}. ${esc(dimName(b.dim))}</dd><dt>Arena</dt><dd>${esc(b.arena)}</dd><dt>Poderes</dt><dd>${esc(b.poderes)}</dd><dt>Mecânica</dt><dd>${esc(b.mecanica)}</dd><dt>Vida</dt><dd>${b.vida.toLocaleString('pt-BR')} em ${b.fases} fases</dd><dt>Recompensa</dt><dd>${esc(b.recompensa)}</dd></dl></article>`).join('')+'</div>';
+}
+function dimView(){
+  return '<div class="cards">'+C.dims.map(d=>`<article class="card"><div class="head"><h3><small>Dimensão ${d.id}</small>${esc(d.nome)}</h3>${st(d.status)}</div><dl><dt>Acesso</dt><dd>${esc(d.acesso)}</dd><dt>Exclusivo</dt><dd>${esc(d.exclusivo)}</dd><dt>Perigo</dt><dd>${esc(d.perigo)}</dd><dt>Física</dt><dd>${esc(d.fisica)}</dd><dt>Base</dt><dd>${esc(d.base)}</dd><dt>Masmorras</dt><dd>${cnt(C.dungeons,x=>x.dim===d.id)}</dd><dt>Chefão</dt><dd>${esc((C.bosses.find(b=>b.dim===d.id)||{nome:'Nenhum'}).nome)}</dd></dl></article>`).join('')+'</div>';
+}
+function dunView(){
+  const q=state.q.toLowerCase();let last=0,n=0;
+  const rows=C.dungeons.filter(d=>(!state.dim||d.dim===state.dim)&&(state.lv==='todos'||d.lv===state.lv)&&(!q||(d.nome+d.desafio+d.classe).toLowerCase().includes(q)));
+  let h=`<div class="scroll"><table><thead><tr><th>#</th><th>Masmorra</th><th>Formato</th><th>Nível</th><th>Desafio final</th><th>Caminho por classe</th><th>Estado</th></tr></thead><tbody>`;
+  for(const d of rows){if(d.dim!==last){last=d.dim;h+=`<tr class="grp"><td colspan="7">${d.dim}. ${esc(dimName(d.dim))}</td></tr>`}n++;
+    h+=`<tr><td class="n">${d.n}</td><td><b>${esc(d.nome)}</b></td><td>${esc(d.formato)}</td><td><span class="lv ${d.lv}">${d.nivel}</span></td><td>${esc(d.desafio)}</td><td>${esc(d.classe)}</td><td>${st(d.status)}</td></tr>`}
+  return h+`</tbody></table></div><p class="legend">${n} de ${C.dungeons.length} masmorras: 5 por dimensão nas dimensões 1 a 10 e 4 por dimensão nas dimensões 11 a 20.</p>`;
+}
+function progView(){
+  return `<div class="scroll"><table><thead><tr><th>Níveis</th><th>Equipamento</th><th>Dimensões</th><th>Desafios</th><th>Recompensas</th></tr></thead><tbody>`+C.progressao.map(p=>`<tr><td class="n" style="white-space:nowrap;color:var(--ink)"><b>${p[0]}</b></td><td>${esc(p[1])}</td><td>${esc(p[2])}</td><td>${esc(p[3])}</td><td>${esc(p[4])}</td></tr>`).join('')+`</tbody></table></div><p class="legend">Os níveis são alvos de projeto. A progressão por classe e profissão entra junto das profissões na próxima etapa.</p>`;
+}
+function body(){const v={mobs:mobsView,chefoes:bossView,dimensoes:dimView,masmorras:dunView,progressao:progView}[state.tab];$('#out').innerHTML=v()}
+function render(){nav();tools();body()}
+function fromHash(){const h=(location.hash||'').slice(1);if(tabs.some(t=>t[0]===h))state.tab=h;render()}
+addEventListener('hashchange',fromHash);fromHash();
+})();
+</script>
+
+</body></html>
